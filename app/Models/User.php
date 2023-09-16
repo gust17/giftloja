@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'parceira_selecionada'
     ];
 
     /**
@@ -42,4 +43,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function responsavels()
+    {
+        return $this->hasMany(Responsavel::class);
+    }
+
+    public function parceira()
+    {
+        return $this->belongsTo(Parceira::class,'parceira_selecionada','id');
+    }
 }

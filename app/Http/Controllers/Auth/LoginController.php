@@ -21,6 +21,11 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
+    public function username()
+    {
+        return 'cpf';
+    }
+
     /**
      * Where to redirect users after login.
      *

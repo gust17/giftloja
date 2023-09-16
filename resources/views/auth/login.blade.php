@@ -64,15 +64,15 @@
                                             @csrf
 
                                             <div class="mb-3">
-                                                <label for="email" class="form-label">CPF</label>
+                                                <label for="cpf" class="form-label">CPF</label>
 
 
-                                                <input id="email" type="email"
-                                                       class="form-control @error('email') is-invalid @enderror"
-                                                       name="email" value="{{ old('email') }}" required
-                                                       autocomplete="email" placeholder="Digite seu CPF" autofocus>
+                                                <input id="cpf" type="cpf"
+                                                       class="form-control @error('cpf') is-invalid @enderror"
+                                                       name="cpf" value="{{ old('cpf') }}" required
+                                                       autocomplete="cpf" placeholder="Digite seu CPF" autofocus>
 
-                                                @error('email')
+                                                @error('cpf')
                                                 <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -120,7 +120,8 @@
 
                                             <div class="row mb-0">
 
-                                                <button type="submit" style="background-color: #23B9D6" class="btn btn-secondary w-100">
+                                                <button type="submit" style="background-color: #23B9D6"
+                                                        class="btn btn-secondary w-100">
                                                     {{ __('Login') }}
                                                 </button>
 
