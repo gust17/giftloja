@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('saques', function (Blueprint $table) {
-            $table->tinyInteger('status')->default(0);
+
             $table->dateTime('data_recebimento')->nullable();
         });
     }
@@ -23,7 +23,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('saques', function (Blueprint $table) {
-            $table->dropColumn('status');
+
             $table->dropColumn('data_recebimento');
         });
     }
