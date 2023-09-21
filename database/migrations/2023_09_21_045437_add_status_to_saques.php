@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('saques', function (Blueprint $table) {
             $table->tinyInteger('status')->default(0);
-            $table->datetimes('data_recebimento');
+            $table->datetimes('data_recebimento')->nullable();
         });
     }
 
