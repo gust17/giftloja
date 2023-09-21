@@ -16,4 +16,10 @@ class Parceira extends Model
 
 
     protected $primaryKey = 'id';
+
+
+    public function extratos()
+    {
+        return $this->hasMany(Extrato::class);
+    }
 }

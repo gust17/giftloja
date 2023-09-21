@@ -66,7 +66,7 @@
                                 <td class="company_name">{{auth()->user()->name}}</td>
                                 <td class="email_id">{{$responsavel->tipo_formated}}</td>
                                 <td class="phone">
-                                    <a href="{{ route('dashboard.selecionar', $responsavel->parceira->id) }}" class="btn btn-primary">Entrar</a>
+                                    <a href="{{ route('dashboard.selecionar', $responsavel->id) }}" class="btn btn-primary">Entrar</a>
                                 </td>
                             </tr>
                         @empty

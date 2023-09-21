@@ -13,4 +13,34 @@ class Cliente extends Model
 
     protected $table = 'users';
 
+
+    public function tokens()
+    {
+        return $this->hasMany(TokenCliente::class, 'user_id', 'id');
+    }
+
+    public function extratos()
+    {
+        return $this->hasMany(Extrato::class, 'user_id', 'id');
+    }
+
+
+    public function entradas()
+    {
+        // dd($this->extratos);
+        $busca = $this->extratos->where('tipo', 1)->sum('valor');
+
+        return $busca;
+    }
+
+    public function saidas()
+    {
+        return $this->extratos->where('tipo', 2)->sum('valor');
+    }
+
+    public function saldoTotal()
+    {
+        return $this->entradas() - $this->saidas();
+    }
+
 }

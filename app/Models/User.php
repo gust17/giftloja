@@ -51,6 +51,6 @@ class User extends Authenticatable
 
     public function parceira()
     {
-        return $this->belongsTo(Parceira::class,'parceira_selecionada','id');
+        return $this->belongsTo(Responsavel::class,'parceira_selecionada','id');
     }
 }

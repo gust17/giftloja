@@ -32,13 +32,24 @@ class ParceiraController extends Controller
 
         //dd($id);
         $parceira = Responsavel::findOrFail($id);
+        if ($parceira->user_id == auth()->user()->id) {
+            $user = auth()->user();
 
-        // Verifique se o usuário tem permissão para acessar esta parceira usando a política
-        $this->authorize('view', $parceira);
-        $user = auth()->user();
-        $user->update(['parceira_selecionada' => $id]);
 
-        // Coloque aqui o código para exibir o painel da parceira selecionada
-        return view('dashboard.parceira', compact('parceira'));
+            $user->update(['parceira_selecionada' => $id]);
+
+
+            return redirect()->route('dashboard');
+
+        }
+
+
+//        // Verifique se o usuário tem permissão para acessar esta parceira usando a política
+//        $this->authorize('view', $parceira);
+//        $user = auth()->user();
+//        $user->update(['parceira_selecionada' => $id]);
+//
+//        // Coloque aqui o código para exibir o painel da parceira selecionada
+//        return view('dashboard.parceira', compact('parceira'));
     }
 }
