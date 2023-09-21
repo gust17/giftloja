@@ -14,7 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('dashboard');
+});
+
+Route::get('/register', function () {
+    return redirect()->route('dashboard');
 });
 
 Route::get('perfil', function () {
