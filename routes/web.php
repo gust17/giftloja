@@ -68,3 +68,8 @@ Route::post('finalizaVenda',[\App\Http\Controllers\FrenteCaixaController::class,
 
 
 Route::get('movimento',[\App\Http\Controllers\AdminController::class,'movimento'])->name('movimento')->middleware('auth');
+Route::get('saque',[\App\Http\Controllers\AdminController::class,'saque'])->name('saque')->middleware('auth');
+Route::get('users',[\App\Http\Controllers\AdminController::class,'users'])->name('users')->middleware('auth');
+Route::post('gerarsaque',[\App\Http\Controllers\AdminController::class,'gerarsaque'])->name('gerarsaque')->middleware('auth');
+
+

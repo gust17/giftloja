@@ -22,4 +22,22 @@ class Parceira extends Model
     {
         return $this->hasMany(Extrato::class);
     }
+
+    public function entrada()
+    {
+        return $this->extratos()->where('tipo',1)->sum('valor');
+    }
+
+    public function saidas()
+    {
+        return $this->extratos()->where('tipo',2)->sum('valor');
+    }
+
+    public function saldoTotal()
+    {
+        return $this->entrada()-$this->saidas();
+    }
+
+
+
 }

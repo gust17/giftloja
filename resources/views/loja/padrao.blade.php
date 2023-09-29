@@ -22,6 +22,8 @@
     <!-- custom Css-->
     <link href="assets/css/custom.min.css" rel="stylesheet" type="text/css" />
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10">
+
 
 </head>
 
@@ -139,18 +141,32 @@
                     </li> <!-- end Dashboard Menu -->
 
 
-                    <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="t-pages">Administrador</span></li>
+                    @if(\App\Models\Responsavel::where('user_id',auth()->user()->id)->where('parceira_id',auth()->user()->parceira->parceira->id)->where('adminstrador',1)->exists())
 
-                    <a class="nav-link menu-link" href="{{route('movimento')}}">
-                        <i class="ri-dashboard-2-line"></i> <span data-key="t-dashboards">Movimentações</span>
-                    </a>
-                    <a class="nav-link menu-link" href="{{route('movimento')}}">
-                        <i class="ri-dashboard-2-line"></i> <span data-key="t-dashboards">Saques</span>
-                    </a>
-                    <a class="nav-link menu-link" href="{{route('movimento')}}">
-                        <i class="ri-dashboard-2-line"></i> <span data-key="t-dashboards">Usuários</span>
-                    </a>
+                        <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="t-pages">Administrador</span></li>
 
+                        <a class="nav-link menu-link" href="{{route('movimento')}}">
+                            <i class="ri-dashboard-2-line"></i> <span data-key="t-dashboards">Movimentações</span>
+                        </a>
+                        <a class="nav-link menu-link" href="{{route('saque')}}">
+                            <i class="ri-dashboard-2-line"></i> <span data-key="t-dashboards">Saques</span>
+                        </a>
+                        <a class="nav-link menu-link" href="{{route('users')}}">
+                            <i class="ri-user-2-fill"></i> <span data-key="t-dashboards">Usuários</span>
+                        </a>
+                    @endif
+
+
+                    <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="t-pages"></span></li>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+
+                    <a class="nav-link menu-link" href="{{ route('logout') }}"  onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                        <i class="ri-logout-box-fill"></i> <span data-key="t-dashboards">Sair</span>
+                    </a>
 
                 </ul>
             </div>
@@ -247,9 +263,12 @@
 <script src="assets/libs/feather-icons/feather.min.js"></script>
 <script src="assets/js/pages/plugins/lord-icon-2.1.0.js"></script>
 <script src="assets/js/plugins.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <!-- App js -->
 <script src="assets/js/app.js"></script>
+
+
+@yield('js')
 </body>
 
 </html>
