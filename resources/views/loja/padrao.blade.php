@@ -205,6 +205,8 @@
                 </div>
 
 
+                @include('flash-message')
+
 
                 @yield('miolo')
                 <!-- end page title -->

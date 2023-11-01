@@ -21,7 +21,7 @@ class Cliente extends Model
 
     public function extratos()
     {
-        return $this->hasMany(Extrato::class, 'user_id', 'id');
+        return $this->hasMany(ExtratoCliente::class, 'user_id', 'id');
     }
 
 
@@ -40,6 +40,7 @@ class Cliente extends Model
 
     public function saldoTotal()
     {
+        //dd($this->extratos);
         return $this->entradas() - $this->saidas();
     }
 
