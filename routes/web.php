@@ -13,9 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('home',function (){
+    return redirect(url('perfil'));
+});
+
 Route::get('/', function () {
     return redirect()->route('dashboard');
 });
+
 
 Route::get('/register', function () {
     return redirect()->route('dashboard');
@@ -62,7 +67,7 @@ Route::get('dashboard', function () {
 Route::get("caixa",[\App\Http\Controllers\FrenteCaixaController::class,'index'])->name('caixa')->middleware('auth');
 
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::post('finalizaVenda',[\App\Http\Controllers\FrenteCaixaController::class,'finaliza'])->middleware('auth');
 
