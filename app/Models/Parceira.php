@@ -39,6 +39,11 @@ class Parceira extends Model
         return $this->entrada()-$this->saidas();
     }
 
+    public function contratos()
+    {
+        return $this->hasMany(Contrato::class);
+    }
+
 
 
 }

@@ -64,8 +64,6 @@ class AdminController extends Controller
         return redirect(url('users'));
 
 
-
-
     }
 
 
@@ -74,7 +72,6 @@ class AdminController extends Controller
 
         //dd($id);
         $user = User::find($id);
-
 
 
         if ($user) {
@@ -121,10 +118,13 @@ class AdminController extends Controller
     public function saque()
     {
         $page = 'Tela de Solicitação de saque';
+        $planoAtual = auth()->user()->parceira->parceira->contratos()->latest('created_at')->first();
+
+        //dd($planoAtual);
 
         $saques = Saque::where('parceira_id', auth()->user()->parceira->parceira->id)->get();
 
-        return view('loja.saque', compact('page', 'saques'));
+        return view('loja.saque', compact('page', 'saques', 'planoAtual'));
     }
 
 
@@ -172,21 +172,27 @@ class AdminController extends Controller
             }
         }
 
+        //dd('aqui');
+
+        $planoAtual = auth()->user()->parceira->parceira->contratos()->latest('created_at')->first();
+
         // Se a validação passar, continue com o processamento
         $grava = [
             'parceira_id' => auth()->user()->parceira->parceira->id,
             'valor' => $request->valor,
             'user_id' => auth()->user()->id,
-            'status' => 0
+            'status' => 0,
+            'contrato_id' => $planoAtual->id,
         ];
 
         $gravaExtrato = [
             'tipo' => 2,
             'valor' => $request->valor,
             'user_id' => auth()->user()->id,
-            'descricao' => "Saque solicitado por " . auth()->user()->name,
+            'descricao' => "Saque solicitado por " . auth()->user()->name. 'com taxa de '.$planoAtual->plano->taxa.'% para '.$planoAtual->plano->dias.' dias',
             'parceira_id' => auth()->user()->parceira->parceira->id
         ];
+        //dd($gravaExtrato);
         Extrato::create($gravaExtrato);
         Saque::create($grava);
         session()->flash('success', 'Saque solicitado com sucesso!');

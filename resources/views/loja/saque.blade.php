@@ -38,6 +38,46 @@
     </div>
     <div class="container">
         <div class="row">
+            <div class="col-md-12">
+                <div class="card-body  text-center">
+                    <h3>Seu planos</h3>
+
+
+                    @if($planoAtual)
+                        <div class="card">
+                            <div class="card-heading">
+                                Plano Atual
+                            </div>
+                            <div class="card-body">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>Plano</th>
+                                        <th>Taxa</th>
+                                        <th>Dias</th>
+                                        <th>Data Contrato</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>{{$planoAtual->plano->name}}</td>
+                                        <td>{{$planoAtual->plano->taxa}}%</td>
+                                        <td>{{$planoAtual->plano->dias}}</td>
+                                        <td>{{$planoAtual->created_at->format('d/m/Y')}}</td>
+                                    </tr>
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    @else
+                        Sem Plano
+
+                    @endif
+                </div>
+            </div>
             <div class="col-xl-6 col-md-6">
                 <div class="card bg-success card-height-100">
                     <div class="card-body">
@@ -61,6 +101,8 @@
                     </div><!-- end card body -->
                 </div>
             </div> <!-- end col-->
+
+
             <div class="col-xl-6 col-md-6">
                 <div class="card bg-danger card-height-100">
                     <div class="card-body">
@@ -87,8 +129,11 @@
 
             @if(auth()->user()->parceira->parceira->saldoTotal() > 0)
                 <div class="col-md-12">
-                    <button data-bs-toggle="modal" data-bs-target="#saque" class="btn btn-info w-100">Solicitar Saque
-                    </button>
+                    @if($planoAtual)
+                        <button data-bs-toggle="modal" data-bs-target="#saque" class="btn btn-info w-100">Solicitar
+                            Saque
+                        </button>
+                    @endif
                 </div>
 
             @endif
@@ -119,9 +164,9 @@
                         <tr>
                             <td>{{$saque->user->name}}</td>
                             <td>R$ {{number_format($saque->valor,2,',','.')}}</td>
-                            <td>R$ {{number_format(round($saque->valor - ($saque->valor * 0.03), 2),2,',','.')}}</td>
+                            <td>R$ {{number_format(round($saque->valorSaque(), 2),2,',','.')}}</td>
                             <td>{{$saque->created_at->format('d/m/Y')}}</td>
-                            <td>{{$saque->created_at->addDays(30)->format('d/m/Y')}}</td>
+                            <td>{{$saque->dataLimite()}}</td>
                         </tr>
                     @empty
                     @endforelse
