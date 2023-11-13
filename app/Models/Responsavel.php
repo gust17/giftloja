@@ -9,6 +9,14 @@ class Responsavel extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'adminstrador',
+        'status',
+        "parceira_id",
+        "user_id",
+
+    ];
+
 
     public function parceira()
     {

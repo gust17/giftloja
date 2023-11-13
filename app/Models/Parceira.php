@@ -35,6 +35,7 @@ class Parceira extends Model
 
     public function saldoTotal()
     {
+        //dd($this->entrada());
         return $this->entrada()-$this->saidas();
     }
 

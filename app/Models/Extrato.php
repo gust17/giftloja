@@ -36,4 +36,14 @@ class Extrato extends Model
         }
         return 'Entrada';
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function operacao()
+    {
+        return $this->hasOne(Operacao::class);
+    }
 }

@@ -21,7 +21,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'parceira_selecionada'
+        'parceira_selecionada',
+        'whatsapp',
+        'cpf'
     ];
 
     /**

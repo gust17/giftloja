@@ -5,7 +5,12 @@
 
         <div style="margin-top: 15px" class="card">
             <div class="card-header">
-                <h5 class="card-title"> Usuarios</h5>
+                <div class="row">
+                    <div class="col-md-9"><h5 class="card-title"> Usuarios</h5></div>
+                    <div class="col-md-3 float-end">
+                        <a href="{{url('user/busca')}}" class="btn btn-success">Criar Usuário</a></div>
+                </div>
+
             </div>
 
 
@@ -19,6 +24,7 @@
                         <th>CPF</th>
                         <th>Email</th>
                         <th>Data de criação</th>
+                        <th>Ações</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -31,6 +37,17 @@
                             <td>{{$user->user->cpf}}</td>
                             <td>{{$user->user->email}}</td>
                             <td>{{$user->created_at->format('d/m/Y')}}</td>
+                            <td>
+                                <a href="{{url('user/edit',$user)}}" class="btn btn-warning">Editar</a>
+
+                                @if($user->status == 1)
+                                    <a href="{{url('user/desabilitar',$user->user->id)}}" class="btn btn-danger">Desabilitar</a>
+                                @else
+                                    <a href="{{url('user/ativar',$user->user->id)}}" class="btn btn-success">Ativar</a>
+                                @endif
+
+
+                            </td>
                         </tr>
                     @empty
                     @endforelse

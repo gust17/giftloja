@@ -18,24 +18,131 @@ class AdminController extends Controller
         return view('loja.movimentacao', compact('page'));
     }
 
+    public function recibo($id)
+    {
+        $movimento = Extrato::find($id);
+
+        if (!$movimento) {
+            session()->flash('error', 'Essa movimentação não existe');
+            return redirect()->route('movimento');
+        }
+        if ($movimento->parceira_id != auth()->user()->parceira->parceira->id) {
+            session()->flash('error', 'Acesso não permitido');
+            return redirect()->route('movimento');
+
+        }
+        $page = 'Recibo';
+        return view('loja.recibo', compact('movimento', 'page'));
+    }
+
+    public function newUser(Request $request)
+    {
+        $validated = $request->validate([
+            'cpf' => 'required',
+            'name' => 'required',
+            'whatsapp' => 'required',
+            'email' => 'required',
+            'tipo_usuario' => 'required',
+        ]);
+
+        $request['password'] = bcrypt($request['cpf']);
+
+
+        $user = User::create($request->all());
+
+        $grava = [
+
+            'adminstrador' => $request->tipo_usuario,
+            'status' => 1,
+            'parceira_id' => auth()->user()->parceira->parceira_id,
+            'user_id' => $user->id
+
+        ];
+        Responsavel::create($grava);
+
+        session()->flash('success', 'Usuário criado com sucesso!');
+        return redirect(url('users'));
+
+
+
+
+    }
+
+
+    public function desabilitarUserUnico($id)
+    {
+
+        //dd($id);
+        $user = User::find($id);
+
+
+
+        if ($user) {
+            $auth = auth()->user()->parceira;
+            //dd($auth->parceira_id);
+            $buscaResponsavels = $user->responsavels->where('parceira_id', $auth->parceira_id)->first();
+            //dd($buscaResponsavels);
+
+            if ($buscaResponsavels) {
+
+                $buscaResponsavels->update(['status' => 0]);
+                session()->flash('success', 'Usuário desabilitado com sucesso!');
+
+                return redirect()->back();
+
+
+            }
+        }
+    }
+
+    public function ativarUserUnico($id)
+    {
+        $user = User::find($id);
+
+
+        if ($user) {
+            $auth = auth()->user()->parceira;
+            //dd($auth->parceira_id);
+            $buscaResponsavels = $user->responsavels->where('parceira_id', $auth->parceira_id)->first();
+            //dd($buscaResponsavels);
+
+            if ($buscaResponsavels) {
+
+                $buscaResponsavels->update(['status' => 1]);
+                session()->flash('success', 'Usuário Ativo com sucesso!');
+
+                return redirect()->back();
+
+
+            }
+        }
+    }
+
     public function saque()
     {
         $page = 'Tela de Solicitação de saque';
 
-        $saques = Saque::where('parceira_id',auth()->user()->parceira->parceira->id)->get();
+        $saques = Saque::where('parceira_id', auth()->user()->parceira->parceira->id)->get();
 
-        return view('loja.saque', compact('page','saques'));
+        return view('loja.saque', compact('page', 'saques'));
     }
 
 
     public function users()
     {
         $page = 'Gestão de Usuarios';
-        $users = Responsavel::where('parceira_id',auth()->user()->parceira->parceira->id)->get();
+        $users = Responsavel::where('parceira_id', auth()->user()->parceira->parceira->id)->get();
         //dd($responsavel);
         //$users = User::whereIn('id',$responsavel)->get();
         //dd($usuarios);
-        return view('loja.user', compact('page','users'));
+        return view('loja.user', compact('page', 'users'));
+    }
+
+
+    public function buscaUser()
+    {
+        $page = 'Consulta Usuário';
+        return view('loja.buscauser', compact('page'));
     }
 
 
@@ -85,6 +192,85 @@ class AdminController extends Controller
         session()->flash('success', 'Saque solicitado com sucesso!');
 
         return redirect()->back();
+    }
+
+    public function consultaUser(Request $request)
+    {
+        $validated = $request->validate([
+            'cpf' => 'required'
+        ]);
+
+        $user = User::where('cpf', $request->cpf)->first();
+
+
+        if ($user) {
+            $auth = auth()->user()->parceira;
+            //dd($auth->parceira_id);
+            $buscaResponsavels = $user->responsavels->where('parceira_id', $auth->parceira_id)->first();
+
+            if ($buscaResponsavels) {
+
+                $page = 'Editar Usuário';
+                return view('loja.editUser', compact('page', 'user', 'buscaResponsavels'));
+            }
+        } else {
+            return redirect(url('newUser', $request->cpf));
+        }
+    }
+
+    public function newUserForm($cpf)
+    {
+
+        $page = 'Novo Usuário';
+        return view('loja.newUser', compact('page', 'cpf'));
+    }
+
+    public function editUserUnico($id)
+    {
+        $user = User::find($id);
+
+
+        if ($user) {
+            $auth = auth()->user()->parceira;
+            //dd($auth->parceira_id);
+            $buscaResponsavels = $user->responsavels->where('parceira_id', $auth->parceira_id)->first();
+            //dd($buscaResponsavels);
+
+            if ($buscaResponsavels) {
+
+                $page = 'Editar Usuário';
+                return view('loja.editUser', compact('page', 'user', 'buscaResponsavels'));
+            }
+        }
+    }
+
+    public function editUser(Request $request)
+    {
+        $validated = $request->validate([
+            'cpf' => 'required',
+            'name' => 'required',
+            'email' => 'required',
+            'whatsapp' => 'required',
+        ]);
+
+
+        $user = User::find($request->user_id);
+
+        $user->update($request->all());
+
+
+        //dd($user);
+        //dd($request->all());
+
+        $reponsavel = Responsavel::find($request->resposavel_id);
+        //dd($reponsavel);
+
+        $reponsavel->update(['adminstrador' => $request->tipo_usuario]);
+
+        session()->flash('success', 'Usuário atualizado com sucesso!');
+        return redirect(url('users'));
+
+
     }
 
 }

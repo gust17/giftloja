@@ -73,8 +73,17 @@ Route::post('finalizaVenda',[\App\Http\Controllers\FrenteCaixaController::class,
 
 
 Route::get('movimento',[\App\Http\Controllers\AdminController::class,'movimento'])->name('movimento')->middleware('auth');
+Route::get('exibir/recibo/{id}',[\App\Http\Controllers\AdminController::class,'recibo'])->name('recibo')->middleware('auth');
 Route::get('saque',[\App\Http\Controllers\AdminController::class,'saque'])->name('saque')->middleware('auth');
 Route::get('users',[\App\Http\Controllers\AdminController::class,'users'])->name('users')->middleware('auth');
 Route::post('gerarsaque',[\App\Http\Controllers\AdminController::class,'gerarsaque'])->name('gerarsaque')->middleware('auth');
+Route::get('user/busca',[\App\Http\Controllers\AdminController::class,'buscaUser'])->middleware('auth');
+Route::post('user/consulta',[\App\Http\Controllers\AdminController::class,'consultaUser'])->middleware('auth');
+Route::post('user/edit',[\App\Http\Controllers\AdminController::class,'editUser'])->middleware('auth');
+Route::post('user/newUser',[\App\Http\Controllers\AdminController::class,'newUser'])->middleware('auth');
+Route::get('user/edit/{id}',[\App\Http\Controllers\AdminController::class,'editUserUnico'])->middleware('auth');
+Route::get('user/ativar/{id}',[\App\Http\Controllers\AdminController::class,'ativarUserUnico'])->middleware('auth');
+Route::get('newUser/{cpf}',[\App\Http\Controllers\AdminController::class,'newUserForm'])->middleware('auth');
+Route::get('user/desabilitar/{id}',[\App\Http\Controllers\AdminController::class,'desabilitarUserUnico'])->middleware('auth');
 
 
