@@ -18,6 +18,13 @@ class FrenteCaixaController extends Controller
 
     public function finaliza(Request $request)
     {
+
+        $request['valor'] = $request->input('valor'); // Supondo que 'valor' seja o nome do campo em seu formulário
+
+        // Remove o "R$" e substitui "," por "."
+        $request['valor'] = str_replace('R$', '', $request->valor);
+        $request['valor'] = str_replace(',', '.', $request->valor);
+        $request['valor'] = (float)$request->valor;
         //dd($request->all());
 
 
