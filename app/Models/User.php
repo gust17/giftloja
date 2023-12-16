@@ -23,7 +23,8 @@ class User extends Authenticatable
         'password',
         'parceira_selecionada',
         'whatsapp',
-        'cpf'
+        'cpf',
+        'senha_alterada'
     ];
 
     /**
