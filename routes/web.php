@@ -87,6 +87,7 @@ Route::get('newUser/{cpf}',[\App\Http\Controllers\AdminController::class,'newUse
 Route::get('user/desabilitar/{id}',[\App\Http\Controllers\AdminController::class,'desabilitarUserUnico'])->middleware('auth');
 
 Route::get('/trocar-senha', [\App\Http\Controllers\AuthTrocarSenhaController::class, 'index'])->name('trocar-senha');
+Route::post('/salvar-nova-senha', [\App\Http\Controllers\AuthTrocarSenhaController::class, 'salvarNovaSenha'])->name('salvar-nova-senha');
 
 
 
