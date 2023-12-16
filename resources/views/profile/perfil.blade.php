@@ -69,19 +69,7 @@
                     Informaçao Pessoal
                 </a>
             </li>
-            <li class="nav-item waves-effect waves-light" role="presentation">
-                <a class="nav-link" data-bs-toggle="tab" href="#pill-justified-profile-1"
-                   role="tab" aria-selected="true">
-                    Partidos
-                </a>
-            </li>
-            <li class="nav-item waves-effect waves-light" role="presentation">
-                <a class="nav-link" data-bs-toggle="tab" href="#pill-justified-messages-1" role="tab"
-                   aria-selected="false" tabindex="-1">
-                    Candidatos
-                </a>
 
-            </li>
             <li class="nav-item waves-effect waves-light" role="presentation">
                 <a class="nav-link" data-bs-toggle="tab" href="#seguranca" role="tab"
                    aria-selected="false" tabindex="-1">
@@ -134,68 +122,7 @@
                     </div>
                 </div>
             </div>
-            <div class="tab-pane" id="pill-justified-profile-1" role="tabpanel">
-                <div class="container">
-                    <div class="card">
 
-                        <div class="card-header">
-                            <h3 class="card-title">Partidos</h3>
-                        </div>
-                        <div class="card-body">
-                            <table id="myTable2" class="table table-striped">
-                                <thead>
-                                <tr>
-                                    <th>Partido</th>
-                                    <th>Numero</th>
-                                    <th>Ação</th>
-
-
-
-                                </tr>
-                                </thead>
-                                <tbody>
-
-
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="tab-pane" id="pill-justified-messages-1" role="tabpanel">
-                <div class="container">
-
-
-                    <div class="card">
-
-                        <div class="card-header">
-                            <h3 class="card-title">Candidatos</h3>
-                        </div>
-
-
-                        <div class="card-body">
-                            <table id="myTable2" class="table table-striped">
-                                <thead>
-                                <tr>
-                                    <th>Candidato</th>
-                                    <th>Numero</th>
-                                    <th>Pleito</th>
-                                    <th>Ação</th>
-
-
-
-                                </tr>
-                                </thead>
-                                <tbody>
-
-
-
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="tab-pane" id="seguranca" role="tabpanel">
                 <div class="container">
 
