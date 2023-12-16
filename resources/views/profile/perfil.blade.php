@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.css"/>
 
 @endsection
-@section('content')
+@section('miolo')
     <style>
         .preview {
             text-align: center;
