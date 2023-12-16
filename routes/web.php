@@ -86,4 +86,7 @@ Route::get('user/ativar/{id}',[\App\Http\Controllers\AdminController::class,'ati
 Route::get('newUser/{cpf}',[\App\Http\Controllers\AdminController::class,'newUserForm'])->middleware('auth');
 Route::get('user/desabilitar/{id}',[\App\Http\Controllers\AdminController::class,'desabilitarUserUnico'])->middleware('auth');
 
+Route::get('/trocar-senha', [\App\Http\Controllers\AuthTrocarSenhaController::class, 'index'])->name('trocar-senha');
+
+
 
