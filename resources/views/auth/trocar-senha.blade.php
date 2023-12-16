@@ -1,7 +1,7 @@
-@extends('padrao.padrao')
+@extends('loja.padrao')
 
 
-@section('content')
+@section('miolo')
     <div class="container">
         <div class="card">
             <div class="card-body">
