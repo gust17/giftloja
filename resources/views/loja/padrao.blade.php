@@ -162,7 +162,7 @@
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                         @csrf
                     </form>
-                    <a class="nav-link menu-link" href="{{route('users')}}">
+                    <a class="nav-link menu-link" href="{{route('meuperfil')}}">
                         <i class="ri-user-2-fill"></i> <span data-key="t-dashboards">Meu Perfil</span>
                     </a>
                     <a class="nav-link menu-link" href="{{ route('logout') }}"  onclick="event.preventDefault();

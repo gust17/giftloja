@@ -91,6 +91,6 @@ Route::post('/salvar-nova-senha', [\App\Http\Controllers\AuthTrocarSenhaControll
 Route::get('meuperfil', function () {
     $page = 'Meu Perfil';
     return view('profile.perfil', compact('page'));
-});
+})->middleware('auth')->name('meuperfil');
 
 
