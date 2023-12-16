@@ -202,7 +202,7 @@
 
                     <div class="card">
                         <div class="card-header">
-                            <h5>ALTERAR MINHA SEHA</h5>
+                            <h5>ALTERAR MINHA SENHA</h5>
                         </div>
                         <div class="card-body">
 
