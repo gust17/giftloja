@@ -92,5 +92,6 @@ Route::get('meuperfil', function () {
     $page = 'Meu Perfil';
     return view('profile.perfil', compact('page'));
 })->middleware('auth')->name('meuperfil');
+Route::post('conta/novasenha', [\App\Http\Controllers\UserController::class, 'novasenha'])->middleware('auth');
 
 
