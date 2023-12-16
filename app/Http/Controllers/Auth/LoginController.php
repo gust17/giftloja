@@ -32,18 +32,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = 'dashboard';
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('guest')->except('logout');
-    }
-
+    //protected $redirectTo = 'dashboard';
     public function authenticated(Request $request, $user)
     {
         if (!$user->senha_alterada) {
@@ -54,4 +43,15 @@ class LoginController extends Controller
 
         return redirect()->intended($this->redirectPath());
     }
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('guest')->except('logout');
+    }
+
+
 }
