@@ -155,23 +155,6 @@
                                 </thead>
                                 <tbody>
 
-                                @forelse(\Illuminate\Support\Facades\Auth::user()->userPartidos as $partido)
-                                    <tr>
-                                        <td>{{$partido->partido->name}}</td>
-                                        <td>{{$partido->partido->number}}</td>
-
-                                        <td></td>
-
-
-
-
-                                    </tr>
-
-                                @empty
-
-
-
-                                @endforelse
 
                                 </tbody>
                             </table>
@@ -205,23 +188,7 @@
                                 </thead>
                                 <tbody>
 
-                                @forelse(\Illuminate\Support\Facades\Auth::user()->userCandidatos as $candidato)
-                                    <tr>
-                                        <td>{{$candidato->candidato->name}}</td>
-                                        <td>{{$candidato->candidato->numero}}</td>
-                                        <td>{{$candidato->candidato->pleito->ano}}</td>
-                                        <td></td>
 
-
-
-
-                                    </tr>
-
-                                @empty
-
-
-
-                                @endforelse
 
                                 </tbody>
                             </table>
