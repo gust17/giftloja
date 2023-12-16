@@ -7,60 +7,60 @@
 
 @endsection
 @section('miolo')
-    <style>
-        .preview {
-            text-align: center;
-            overflow: hidden;
-            width: 160px;
-            height: 160px;
-            margin: 10px;
-            border: 1px solid red;
-        }
-    </style>
+{{--    <style>--}}
+{{--        .preview {--}}
+{{--            text-align: center;--}}
+{{--            overflow: hidden;--}}
+{{--            width: 160px;--}}
+{{--            height: 160px;--}}
+{{--            margin: 10px;--}}
+{{--            border: 1px solid red;--}}
+{{--        }--}}
+{{--    </style>--}}
 
-    <div class="profile-foreground position-relative mx-n4 mt-n4">
-        <div class="profile-wid-bg">
-            <img src="assets/images/profile-bg.jpg" alt="" class="profile-wid-img">
-        </div>
-    </div>
-    <div class="pt-4 mb-4 mb-lg-3 pb-lg-4">
-        <div class="row g-4">
-            <div class="col-auto">
-                <div class="avatar-lg">
-                    @if(\Illuminate\Support\Facades\Auth::user()->img)
-                    <img src="upload/{{\Illuminate\Support\Facades\Auth::user()->img}}" alt="user-img" class="img-thumbnail rounded-circle">
-                    @else
-                        <img src="{{asset('avatar.png')}}" alt="user-img" class="img-thumbnail rounded-circle">
-                    @endif
-                </div>
-            </div>
-            <!--end col-->
-            <div class="col">
-                <div class="p-2">
-                    <h3 class="text-white mb-1">{{\Illuminate\Support\Facades\Auth::user()->name}}</h3>
+{{--    <div class="profile-foreground position-relative mx-n4 mt-n4">--}}
+{{--        <div class="profile-wid-bg">--}}
+{{--            <img src="assets/images/profile-bg.jpg" alt="" class="profile-wid-img">--}}
+{{--        </div>--}}
+{{--    </div>--}}
+{{--    <div class="pt-4 mb-4 mb-lg-3 pb-lg-4">--}}
+{{--        <div class="row g-4">--}}
+{{--            <div class="col-auto">--}}
+{{--                <div class="avatar-lg">--}}
+{{--                    @if(\Illuminate\Support\Facades\Auth::user()->img)--}}
+{{--                    <img src="upload/{{\Illuminate\Support\Facades\Auth::user()->img}}" alt="user-img" class="img-thumbnail rounded-circle">--}}
+{{--                    @else--}}
+{{--                        <img src="{{asset('avatar.png')}}" alt="user-img" class="img-thumbnail rounded-circle">--}}
+{{--                    @endif--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--            <!--end col-->--}}
+{{--            <div class="col">--}}
+{{--                <div class="p-2">--}}
+{{--                    <h3 class="text-white mb-1">{{\Illuminate\Support\Facades\Auth::user()->name}}</h3>--}}
 
-                </div>
-            </div>
-            <!--end col-->
+{{--                </div>--}}
+{{--            </div>--}}
+{{--            <!--end col-->--}}
 
-            <!--end col-->
+{{--            <!--end col-->--}}
 
-        </div>
-        <!--end row-->
-    </div>
-    ::before
-    ::before
-    ::before
-    ::before
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
+{{--        </div>--}}
+{{--        <!--end row-->--}}
+{{--    </div>--}}
+{{--    ::before--}}
+{{--    ::before--}}
+{{--    ::before--}}
+{{--    ::before--}}
+{{--    <br>--}}
+{{--    <br>--}}
+{{--    <br>--}}
+{{--    <br>--}}
+{{--    <br>--}}
+{{--    <br>--}}
+{{--    <br>--}}
+{{--    <br>--}}
+{{--    <br>--}}
     <div class="container">
         <ul class="nav nav-pills nav-justified mb-3" role="tablist">
             <li class="nav-item waves-effect waves-light" role="presentation">
