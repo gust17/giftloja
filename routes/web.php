@@ -88,6 +88,9 @@ Route::get('user/desabilitar/{id}',[\App\Http\Controllers\AdminController::class
 
 Route::get('/trocar-senha', [\App\Http\Controllers\AuthTrocarSenhaController::class, 'index'])->name('trocar-senha');
 Route::post('/salvar-nova-senha', [\App\Http\Controllers\AuthTrocarSenhaController::class, 'salvarNovaSenha'])->name('salvar-nova-senha');
-
+Route::get('meuperfil', function () {
+    $page = 'Meu Perfil';
+    return view('profile.perfil', compact('page'));
+});
 
 
